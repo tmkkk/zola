@@ -1,0 +1,12 @@
+[package]
+name = "charts"
+version = "0.1.0"
+authors = ["Tymoteusz Wiśniewski <tymo@tymo.xyz>"]
+edition = "2018"
+
+[dependencies]
+tera = "1"
+meval = "0.2.0"
+
+config = { path = "../config" }
+errors = { path = "../errors" }

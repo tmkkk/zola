@@ -23,4 +23,3 @@ link_checker = { path = "../link_checker" }
 
 [dev-dependencies]
 templates = { path = "../templates" }
-

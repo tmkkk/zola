@@ -35,7 +35,7 @@ ctrlc = "3"
 open = "1.2"
 globset = "0.4"
 
-site = { path = "components/site" }
+site = { path = "components/site", features = ["use_charts"] }
 errors = { path = "components/errors" }
 front_matter = { path = "components/front_matter" }
 utils = { path = "components/utils" }
@@ -55,6 +55,7 @@ members = [
     "components/imageproc",
     "components/link_checker",
     "components/library",
+    "components/charts",
 ]
 
 [profile.release]

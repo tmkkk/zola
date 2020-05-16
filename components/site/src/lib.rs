@@ -72,6 +72,7 @@ impl Site {
             format!("{}/{}", path.to_string_lossy().replace("\\", "/"), "templates/**/*.*ml");
         // Only parsing as we might be extending templates from themes and that would error
         // as we haven't loaded them yet
+        println!("{}", tpl_glob);
         let mut tera =
             Tera::parse(&tpl_glob).map_err(|e| Error::chain("Error parsing templates", e))?;
         if let Some(theme) = config.theme.clone() {
@@ -548,6 +549,12 @@ impl Site {
         self.tera.register_function(
             "get_taxonomy_url",
             global_fns::GetTaxonomyUrl::new(&self.config.default_language, &self.taxonomies),
+        );
+
+        #[cfg(feature = "use_charts")]
+        self.tera.register_function(
+            "get_function_points",
+            charts::FunctionCalculator::new(self.config.clone()),
         );
     }
 
