@@ -44,7 +44,7 @@ impl TeraFn for FunctionCalculator {
 
         let expr: meval::Expr = match formula.parse() {
             Ok(x) => x,
-            Err(_) => bail!("Could not parse the formula"),
+            Err(e) => bail!("Could not parse the formula: {}", e),
         };
         let func = match expr.bind("x") {
             Ok(f) => f,
@@ -53,7 +53,7 @@ impl TeraFn for FunctionCalculator {
 
         let parts = (0..samples_cnt)
             .map(|x| xrange.0 + (xrange.1 - xrange.0) / samples_cnt as f64 * x as f64)
-            .filter(|x| func(*x).is_normal())
+            .filter(|x| func(*x).is_normal() || func(*x) == 0.0)
             .map(|x| format!("{{x:{:.8},y:{:.8}}}", x, func(x)))
             .collect::<Vec<_>>()
             .join(",");
