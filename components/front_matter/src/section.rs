@@ -49,6 +49,9 @@ pub struct SectionFrontMatter {
     /// Defaults to `true` but is only used if search if explicitly enabled in the config.
     #[serde(skip_serializing)]
     pub in_search_index: bool,
+    /// Whether the section should be included in the sitemap
+    #[serde(skip_serializing)]
+    pub in_sitemap: bool,
     /// Whether the section should pass its pages on to the parent section. Defaults to `false`.
     /// Useful when the section shouldn't split up the parent section, like
     /// sections for each year under a posts section.
@@ -103,6 +106,7 @@ impl Default for SectionFrontMatter {
             redirect_to: None,
             insert_anchor_links: InsertAnchor::None,
             in_search_index: true,
+            in_sitemap: true,
             transparent: false,
             page_template: None,
             aliases: Vec::new(),

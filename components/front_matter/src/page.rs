@@ -53,6 +53,9 @@ pub struct PageFrontMatter {
     /// Defaults to `true` but is only used if search if explicitly enabled in the config.
     #[serde(skip_serializing)]
     pub in_search_index: bool,
+    /// Whether the page should be included in the sitemap
+    #[serde(skip_serializing)]
+    pub in_sitemap: bool,
     /// Any extra parameter present in the front matter
     pub extra: Map<String, Value>,
 }
@@ -132,6 +135,7 @@ impl Default for PageFrontMatter {
             weight: None,
             aliases: Vec::new(),
             in_search_index: true,
+            in_sitemap: true,
             template: None,
             extra: Map::new(),
         }

@@ -64,6 +64,7 @@ pub fn find_entries<'a>(
     let pages = library
         .pages_values()
         .iter()
+        .filter(|p| p.meta.in_sitemap)
         .map(|p| {
             let mut entry = SitemapEntry::new(
                 Cow::Borrowed(&p.permalink),
@@ -77,6 +78,7 @@ pub fn find_entries<'a>(
     let mut sections = library
         .sections_values()
         .iter()
+        .filter(|s| s.meta.in_sitemap)
         .filter(|s| s.meta.render)
         .map(|s| {
             let mut entry = SitemapEntry::new(Cow::Borrowed(&s.permalink), None);
